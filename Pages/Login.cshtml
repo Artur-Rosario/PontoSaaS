@@ -1,0 +1,13 @@
+@page
+@model LoginModel
+
+<form method="post">
+    <input asp-for="Email" placeholder="Email" />
+    <input asp-for="Senha" type="password" placeholder="Senha" />
+    <button type="submit">Entrar</button>
+</form>
+
+@if (Model.Erro != null)
+{
+    <p>@Model.Erro</p>
+}
