@@ -185,3 +185,4 @@ D:\VisualStudio\source\repos\PontoSaaS\PontoSaaS\obj\Debug\net9.0\refint\PontoSa
 D:\VisualStudio\source\repos\PontoSaaS\PontoSaaS\obj\Debug\net9.0\PontoSaaS.pdb
 D:\VisualStudio\source\repos\PontoSaaS\PontoSaaS\obj\Debug\net9.0\PontoSaaS.genruntimeconfig.cache
 D:\VisualStudio\source\repos\PontoSaaS\PontoSaaS\obj\Debug\net9.0\ref\PontoSaaS.dll
+D:\VisualStudio\source\repos\PontoSaaS\PontoSaaS\obj\Debug\net9.0\PontoSaaS.sourcelink.json

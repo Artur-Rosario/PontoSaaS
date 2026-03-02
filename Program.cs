@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PontoSaaS.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +9,14 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
     
 builder.Services.AddRazorPages();
-builder.Services.AddSession();
+// builder.Services.AddSession();  Remover Session e usar Cookie Auth
+builder.Services
+    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/";
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -21,7 +29,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseSession();
+// app.UseSession();
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseRouting();
 
 app.UseAuthorization();
@@ -49,14 +59,26 @@ using (var scope = app.Services.CreateScope())
         };
 
         context.Empresas.Add(empresa);
+        context.SaveChanges();
 
+        // Admin
         context.Usuarios.Add(new Usuario
         {
             Nome = "Admin",
             Email = "admin@teste.com",
             SenhaHash = BCrypt.Net.BCrypt.HashPassword("123456"),
             Role = "Admin",
-            Empresa = empresa
+            EmpresaId = empresa.Id
+        });
+
+        // Funcionário
+        context.Usuarios.Add(new Usuario
+        {
+            Nome = "User1",
+            Email = "user1@teste.com",
+            SenhaHash = BCrypt.Net.BCrypt.HashPassword("123456"),
+            Role = "Funcionario",
+            EmpresaId = empresa.Id
         });
 
         context.SaveChanges();

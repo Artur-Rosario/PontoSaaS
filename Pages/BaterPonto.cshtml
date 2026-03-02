@@ -1,0 +1,48 @@
+@page
+@model PontoSaaS.Pages.BaterPontoModel
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+<h2>Bater Ponto</h2>
+
+<p>Usuário: @User.Identity?.Name</p>
+<p>Data/Hora (UTC): @DateTime.UtcNow</p>
+
+<hr />
+
+<form method="post">
+    <button type="submit" name="tipo" value="Entrada">Entrada</button>
+    <button type="submit" name="tipo" value="Saida">Saída</button>
+    <button type="submit" name="tipo" value="InicioIntervalo">Início Intervalo</button>
+    <button type="submit" name="tipo" value="FimIntervalo">Fim Intervalo</button>
+</form>
+
+@if (Model.Mensagem != null)
+{
+    <p style="color:green">@Model.Mensagem</p>
+}
+
+<hr />
+
+<h3>Meus Registros</h3>
+
+<table border="1" cellpadding="5">
+    <thead>
+        <tr>
+            <th>Data/Hora (UTC)</th>
+            <th>Tipo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model.Registros)
+        {
+            <tr>
+                <td>@r.DataHora</td>
+                <td>@r.Tipo</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<a href="/Logout">Sair</a>
