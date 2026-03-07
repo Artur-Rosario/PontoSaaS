@@ -49,6 +49,9 @@ public class LoginModel : PageModel
     CookieAuthenticationDefaults.AuthenticationScheme,
     new ClaimsPrincipal(claimsIdentity));
 
+    if (usuario.Role == "Admin")
+        return RedirectToPage("/Admin/Dashboard");
+
     return RedirectToPage("/BaterPonto");
 
 

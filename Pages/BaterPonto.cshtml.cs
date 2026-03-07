@@ -20,21 +20,23 @@ namespace PontoSaaS.Pages
         public List<RegistroPonto> Registros { get; set; } = new();
         public string? Mensagem { get; set; }
 
-        public async Task OnGetAsync()
-        {
-            var usuarioId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+public async Task OnGetAsync()
+{
+    var usuarioId = Guid.Parse(
+        User.FindFirst(ClaimTypes.NameIdentifier)!.Value
+    );
 
-            Registros = await _context.RegistrosPonto
-                .Where(r => r.UsuarioId == usuarioId)
-                .OrderByDescending(r => r.DataHora)
-                .Take(20)
-                .ToListAsync();
-        }
+    Registros = await _context.RegistrosPonto
+        .Where(r => r.UsuarioId == usuarioId)   // ✅ comparação correta
+        .OrderByDescending(r => r.DataHora)
+        .Take(20)
+        .ToListAsync();
+}
 
         public async Task<IActionResult> OnPostAsync(string tipo)
         {
-            var usuarioId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
-            var empresaId = int.Parse(User.FindFirst("EmpresaId")!.Value);
+            var usuarioId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+            var empresaId = Guid.Parse(User.FindFirst("EmpresaId")!.Value);
 
             var registro = new RegistroPonto
             {

@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace PontoSaaS.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260302232755_AddRegistroPonto")]
-    partial class AddRegistroPonto
+    [Migration("20260304153827_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,15 +86,15 @@ namespace PontoSaaS.Migrations
                     b.Property<DateTime>("DataHora")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("EmpresaId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("EmpresaId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Tipo")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 

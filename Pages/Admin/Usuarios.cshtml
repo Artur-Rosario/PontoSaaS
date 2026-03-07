@@ -1,0 +1,40 @@
+@page
+@model UsuariosModel
+@{
+    Layout = "_AdminLayout";
+}
+
+<h2>Funcionários</h2>
+
+<form method="post">
+    <input asp-for="NovoUsuario.Nome" placeholder="Nome"/>
+    <input asp-for="NovoUsuario.Email" placeholder="Email"/>
+    <input name="Senha" type="password" placeholder="Senha"/>
+
+    <select asp-for="NovoUsuario.EmpresaId">
+        @foreach(var e in Model.Empresas)
+        {
+            <option value="@e.Id">@e.Nome</option>
+        }
+    </select>
+
+    <button type="submit">Criar</button>
+</form>
+
+<table>
+<tr>
+<th>Nome</th>
+<th>Email</th>
+<th>Empresa</th>
+</tr>
+
+@foreach(var u in Model.Usuarios)
+{
+<tr>
+<td>@u.Nome</td>
+<td>@u.Email</td>
+<td>@u.Empresa?.Nome</td>
+</tr>
+}
+
+</table>

@@ -83,15 +83,15 @@ namespace PontoSaaS.Migrations
                     b.Property<DateTime>("DataHora")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("EmpresaId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("EmpresaId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Tipo")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin</title>
+    <style>
+        body { margin:0; font-family:Arial; display:flex; }
+        .sidebar{
+            width:220px;
+            background:#1f2937;
+            color:white;
+            height:100vh;
+            padding:20px;
+        }
+        .sidebar a{
+            display:block;
+            color:white;
+            text-decoration:none;
+            margin-bottom:10px;
+        }
+        .content{
+            flex:1;
+            padding:30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h3>Admin</h3>
+
+    <a href="/Admin/Dashboard">Dashboard</a>
+    <a href="/Admin/Empresas">Empresas</a>
+    <a href="/Admin/Usuarios">Funcionários</a>
+</div>
+
+<div class="content">
+    @RenderBody()
+</div>
+
+</body>
+</html>

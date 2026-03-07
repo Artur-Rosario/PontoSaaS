@@ -1,0 +1,29 @@
+@page
+@model EmpresasModel
+@{
+    Layout = "_AdminLayout";
+}
+
+<h2>Empresas</h2>
+
+<form method="post">
+    <input asp-for="NovaEmpresa.Nome" placeholder="Nome" />
+    <input asp-for="NovaEmpresa.Cnpj" placeholder="CNPJ" />
+    <button type="submit">Adicionar</button>
+</form>
+
+<table>
+    <tr>
+        <th>Nome</th>
+        <th>CNPJ</th>
+    </tr>
+
+@foreach (var e in Model.Empresas)
+{
+    <tr>
+        <td>@e.Nome</td>
+        <td>@e.Cnpj</td>
+    </tr>
+}
+
+</table>

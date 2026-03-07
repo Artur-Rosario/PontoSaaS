@@ -50,41 +50,22 @@ using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-    if (!context.Empresas.Any())
+    context.Database.Migrate();
+
+    if (!context.Usuarios.Any(u => u.Email == "admin@teste.com"))
     {
-        var empresa = new Empresa
-        {
-            Nome = "Empresa Teste",
-            Cnpj = "000000000001"
-        };
-
-        context.Empresas.Add(empresa);
-        context.SaveChanges();
-
-        // Admin
         context.Usuarios.Add(new Usuario
         {
+            Id = Guid.NewGuid(),
             Nome = "Admin",
             Email = "admin@teste.com",
             SenhaHash = BCrypt.Net.BCrypt.HashPassword("123456"),
             Role = "Admin",
-            EmpresaId = empresa.Id
-        });
-
-        // Funcionário
-        context.Usuarios.Add(new Usuario
-        {
-            Nome = "User1",
-            Email = "user1@teste.com",
-            SenhaHash = BCrypt.Net.BCrypt.HashPassword("123456"),
-            Role = "Funcionario",
-            EmpresaId = empresa.Id
+            EmpresaId = Guid.Empty
         });
 
         context.SaveChanges();
     }
 }
-
-
 
 app.Run();
