@@ -1,9 +1,82 @@
 @page
-@model DashboardModel
+@model PontoSaaS.Pages.Admin.DashboardModel
+
 @{
-    Layout = "_AdminLayout";
+    ViewData["Title"] = "Dashboard Admin";
 }
 
-<h1>Painel Administrativo</h1>
+<div class="max-w-7xl mx-auto">
+    <h1 class="text-3xl font-bold text-gray-900 mb-8">Dashboard</h1>
 
-<p>Gerencie empresas e funcionários.</p>
+    <!-- Cards de Empresas -->
+    <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Empresas Cadastradas</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            @foreach (var empresa in Model.Empresas)
+            {
+                <a href="?empresaId=@empresa.Id"
+                   class="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg hover:border-primary/30 transition-all duration-300 overflow-hidden group">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 group-hover:text-primary">@empresa.Nome</h3>
+                        <p class="text-sm text-gray-500 mt-1">CNPJ: @empresa.Cnpj</p>
+                        <div class="mt-4 text-primary font-medium group-hover:underline">Ver funcionários →</div>
+                    </div>
+                </a>
+            }
+        </div>
+    </section>
+
+    @if (Model.EmpresaSelecionadaId.HasValue)
+    {
+        <section>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6">
+                Funcionários da empresa selecionada
+            </h2>
+
+            @if (!Model.FuncionariosSelecionados.Any())
+            {
+                <p class="text-gray-500">Nenhum funcionário cadastrado nesta empresa.</p>
+            }
+            else
+            {
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @foreach (var func in Model.FuncionariosSelecionados)
+                    {
+                        <div class="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+                            <div class="p-6">
+                                <h3 class="text-lg font-semibold text-gray-900">@func.Nome</h3>
+                                <p class="text-sm text-gray-600 mt-1">@func.Email</p>
+
+                                <div class="mt-6 flex flex-wrap gap-3">
+                                    <a href="/Admin/Registros?usuarioId=@func.Id"
+                                       class="flex-1 bg-primary text-white text-center py-2.5 rounded-lg hover:bg-primary/90 transition font-medium">
+                                        Todos os registros
+                                    </a>
+
+                                    <a href="/Admin/PontosDia?empresaId=@Model.EmpresaSelecionadaId&usuarioId=@func.Id"
+                                       class="flex-1 bg-gray-100 text-gray-800 text-center py-2.5 rounded-lg hover:bg-gray-200 transition font-medium">
+                                        Pontos do dia
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+
+            <!-- Botão para Pontos do Dia de TODOS da empresa -->
+            <div class="mt-10">
+                <a href="/Admin/PontosDia?empresaId=@Model.EmpresaSelecionadaId"
+                   class="inline-block bg-green-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-green-700 transition shadow-md">
+                    Ver Pontos do Dia (Todos os funcionários)
+                </a>
+            </div>
+        </section>
+    }
+    else
+    {
+        <div class="bg-white border border-gray-200 rounded-2xl p-10 text-center text-gray-500">
+            Selecione uma empresa acima para visualizar os funcionários e registros.
+        </div>
+    }
+</div>

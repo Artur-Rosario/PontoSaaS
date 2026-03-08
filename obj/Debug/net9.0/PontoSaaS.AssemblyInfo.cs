@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PontoSaaS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+331831b53ce7c47b3fdedbf4bc3dde87f6574811")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+08c9eb9d3e19473e269e64f6c2e1698b2d86dcdc")]
 [assembly: System.Reflection.AssemblyProductAttribute("PontoSaaS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PontoSaaS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

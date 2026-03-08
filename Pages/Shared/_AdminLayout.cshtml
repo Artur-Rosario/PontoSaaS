@@ -1,42 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Ponto SaaS</title>
+    <!-- Tailwind CDN (para desenvolvimento/protótipo) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'airbnb': '#FF385C',       // vermelho Airbnb (opcional)
+                        'primary': '#007A87',      // teal Airbnb-like
+                        'dark': '#1F2937',
+                        'light': '#F9FAFB',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Fontes modernas (opcional, mas ajuda no visual Airbnb) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { margin:0; font-family:Arial; display:flex; }
-        .sidebar{
-            width:220px;
-            background:#1f2937;
-            color:white;
-            height:100vh;
-            padding:20px;
-        }
-        .sidebar a{
-            display:block;
-            color:white;
-            text-decoration:none;
-            margin-bottom:10px;
-        }
-        .content{
-            flex:1;
-            padding:30px;
-        }
+        body { font-family: 'Inter', system-ui, sans-serif; }
     </style>
 </head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-gray-900 text-white h-screen overflow-y-auto fixed">
+            <div class="p-6">
+                <h2 class="text-2xl font-bold mb-10">Ponto SaaS Admin</h2>
+                <nav class="space-y-2">
+                    <a href="/Admin/Dashboard" class="block px-4 py-3 rounded-lg hover:bg-gray-800 transition">Dashboard</a>
+                    <a href="/Admin/Empresas" class="block px-4 py-3 rounded-lg hover:bg-gray-800 transition">Empresas</a>
+                    <a href="/Admin/Usuarios" class="block px-4 py-3 rounded-lg hover:bg-gray-800 transition">Funcionários</a>
+                    <a href="/Logout" class="block px-4 py-3 rounded-lg hover:bg-red-900/50 transition mt-10">Sair</a>
+                </nav>
+            </div>
+        </aside>
 
-<body>
-
-<div class="sidebar">
-    <h3>Admin</h3>
-
-    <a href="/Admin/Dashboard">Dashboard</a>
-    <a href="/Admin/Empresas">Empresas</a>
-    <a href="/Admin/Usuarios">Funcionários</a>
-</div>
-
-<div class="content">
-    @RenderBody()
-</div>
-
+        <!-- Conteúdo principal -->
+        <main class="flex-1 ml-64 p-8">
+            @RenderBody()
+        </main>
+    </div>
 </body>
 </html>
