@@ -56,13 +56,13 @@ if (!context.Empresas.Any())
 {
     var empresa = new Empresa
     {
-        Nome = "Empresa Teste"
+        Id = Guid.NewGuid(),
+        Nome = "Empresa Teste",
+        Cnpj = "00000000000000"
     };
 
     context.Empresas.Add(empresa);
     context.SaveChanges();
-
-}
 
     if (!context.Usuarios.Any(u => u.Email == "admin@teste.com"))
     {
@@ -73,11 +73,11 @@ if (!context.Empresas.Any())
             Email = "admin@teste.com",
             SenhaHash = BCrypt.Net.BCrypt.HashPassword("123456"),
             Role = "Admin",
-            EmpresaId = Guid.Empty
+            EmpresaId = empresa.Id
         });
 
         context.SaveChanges();
     }
 }
-
+}
 app.Run();
