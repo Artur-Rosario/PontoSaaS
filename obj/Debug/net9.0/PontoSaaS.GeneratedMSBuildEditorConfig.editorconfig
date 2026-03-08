@@ -36,6 +36,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRW1wcmVzYXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/VisualStudio/source/repos/PontoSaaS/PontoSaaS/Pages/Admin/PontosDia.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUG9udG9zRGlhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/VisualStudio/source/repos/PontoSaaS/PontoSaaS/Pages/Admin/Usuarios.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXN1YXJpb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
