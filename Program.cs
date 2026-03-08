@@ -52,6 +52,18 @@ using (var scope = app.Services.CreateScope())
 
     context.Database.Migrate();
 
+if (!context.Empresas.Any())
+{
+    var empresa = new Empresa
+    {
+        Nome = "Empresa Teste"
+    };
+
+    context.Empresas.Add(empresa);
+    context.SaveChanges();
+
+}
+
     if (!context.Usuarios.Any(u => u.Email == "admin@teste.com"))
     {
         context.Usuarios.Add(new Usuario
